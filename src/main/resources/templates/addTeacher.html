@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Teacher</title>
+    <meta charset="UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- See configuration in WebMvConfig.java -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <script th:src="@{/popper/popper.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+
+<h2>Add Teacher</h2>
+
+<form th:action="@{/teacher}" th:object="${form}" method="POST">
+
+    <div class="form-group">
+        <input type="hidden" th:field="*{id}"/>
+        <label>Surname</label>
+        <input type="text" class="form-control" placeholder="Enter teacher surname" th:field="*{surname}"/>
+        <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" placeholder="Enter teacher name" th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+    <div class="form-group">
+        <label>Father name</label>
+        <input type="text" class="form-control" placeholder="Enter teacher father name" th:field="*{fatherName}"/>
+        <span th:if="${#fields.hasErrors('fatherName')}" th:errors="*{fatherName}"></span>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" placeholder="Enter teacher email" th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+    <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" class="form-control" placeholder="Enter teacher phone" th:field="*{phone}"/>
+        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+    </div>
+    <div class="form-group">
+        <label>Discipline name</label>
+        <select th:field="${form.disciplineId}" class="form-control">
+            <option th:each="elem : ${listOfDisciplines}"
+                    th:value="${elem.id}"
+                    th:utext="${elem.name}">
+            </option>
+        </select>
+    </div>
+    <input type="submit" class="btn btn-success" value="Save"/>
+</form>
+
+</body>
+</html>

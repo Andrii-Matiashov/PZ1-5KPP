@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Disciplines</title>
+
+    <meta charset="UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- See configuration in WebMvcConfig.java -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <script th:src="@{/popper/popper.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+
+    <!-- <style>
+    th, td {
+        padding: 5px;
+    }
+    </style> -->
+
+</head>
+
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+
+<div class="container">
+    <h2>Disciplines</h2>
+
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Hours per semester</th>
+            <th>Operations</th>
+        </tr>
+        <tr th:each="disciplineInfo : ${allDisciplines}">
+            <td th:utext="${disciplineInfo.id}">..</td>
+            <td th:utext="${disciplineInfo.name}">..</td>
+            <td th:utext="${disciplineInfo.hourPerSemester}">..</td>
+            <td>
+                <form method="get" th:action="@{/discipline/{id}(id=${disciplineInfo.id})}">
+                    <input type="submit" class="btn btn-outline-info btn-sm" value="Show info">
+                </form>
+                <form method="get" th:action="@{/discipline/{id}/edit(id=${disciplineInfo.id})}">
+                    <input type="submit" class="btn btn-outline-primary btn-sm" value="Update">
+                </form>
+                <form method="post" th:action="@{/discipline/{id}(id=${disciplineInfo.id})}">
+                    <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
+                </form>
+            </td>
+        </tr>
+
+    </table>
+    <input type="button" value="Add new discipline" class="btn btn-success"
+           onclick="window.location.href='/discipline/new'"/>
+
+</div>
+</body>
+</html>
