@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Discipline</title>
+
+    <meta charset="UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- See configuration in WebMvcConfig.java -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen"/>
+
+
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <script th:src="@{/popper/popper.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+
+    <!-- <style>
+    th, td {
+        padding: 5px;
+    }
+    </style> -->
+
+</head>
+
+<body>
+<!-- Include _menu.html -->
+<th:block th:include="/_menu"></th:block>
+<div class="container">
+    <h2>Discipline</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Hours per semester</th>
+        </tr>
+        <tr>
+            <td th:utext="${discipline.id}">..</td>
+            <td th:utext="${discipline.name}">..</td>
+            <td th:utext="${discipline.hourPerSemester}">..</td>
+        </tr>
+    </table>
+    <br><br>
+    <h2>Teachers on this discipline</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Surname</th>
+            <th>Name</th>
+            <th>Father name</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+        <tr th:each="teacher : ${teachers}">
+            <td th:utext="${teacher.id}">..</td>
+            <td th:utext="${teacher.surname}">..</td>
+            <td th:utext="${teacher.name}">..</td>
+            <td th:utext="${teacher.fatherName}">..</td>
+            <td th:utext="${teacher.phone}">..</td>
+            <td th:utext="${teacher.email}">..</td>
+        </tr>
+    </table>
+    <br><br>
+    <h2>Lessons on this discipline</h2>
+    <table  class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Discipline</th>
+            <th>Classroom</th>
+            <th>Starts at</th>
+            <th>Ends at</th>
+            <th>Operations</th>
+        </tr>
+        <tr th:each="lessonInfo : ${schedule}">
+            <td th:utext="${lessonInfo.id}">..</td>
+            <td th:utext="${lessonInfo.disciplineName}">..</td>
+            <td th:utext="${lessonInfo.cabinetNumber}">..</td>
+            <td th:utext="${lessonInfo.startTime}">..</td>
+            <td th:utext="${lessonInfo.endTime}">..</td>
+            <td>
+                <form method="get" th:action="@{/schedule/{id}(id=${lessonInfo.id})}">
+                    <input type="submit" class="btn btn-outline-info btn-sm" value="Show info">
+                </form>
+                <form method="get" th:action="@{/schedule/{id}/edit(id=${lessonInfo.id})}">
+                    <input type="submit" class="btn btn-outline-primary btn-sm" value="Update">
+                </form>
+                <form method="post" th:action="@{/schedule/{id}(id=${lessonInfo.id})}">
+                    <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
+                </form>
+            </td>
+        </tr>
+
+    </table>
+</div>
+</body>
+</html>

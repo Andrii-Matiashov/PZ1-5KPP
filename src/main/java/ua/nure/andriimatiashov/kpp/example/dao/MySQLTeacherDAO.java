@@ -33,6 +33,7 @@ public class MySQLTeacherDAO implements TeacherIDAO{
             connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
             PreparedStatement statement = connection.prepareStatement(SQL_GET_ALL_TEACHERS);
 
+
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 Teacher teacher = new Teacher();

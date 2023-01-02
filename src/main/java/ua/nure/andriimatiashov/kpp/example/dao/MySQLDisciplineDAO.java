@@ -26,6 +26,7 @@ public class MySQLDisciplineDAO implements DisciplineIDAO {
             connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
             PreparedStatement statement = connection.prepareStatement(SQL_GET_ALL_DISCIPLINES);
 
+
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 Discipline discipline = new Discipline();

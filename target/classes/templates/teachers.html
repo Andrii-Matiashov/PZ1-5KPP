@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Teachers</title>
+
+      <meta charset="UTF-8"/>
+    
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+       
+      <!-- See configuration in WebMvcConfig.java -->
+      <link th:href="@{/bootstrap/css/bootstrap.min.css}"
+                rel="stylesheet" media="screen"/>
+                 
+        
+      <script th:src="@{/jquery/jquery.min.js}"></script>  
+      <script th:src="@{/popper/popper.min.js}"></script>  
+      <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>   
+          
+ 
+<!-- <style>
+th, td {
+    padding: 5px;
+}
+</style> -->
+ 
+</head>
+ 
+<body>
+    <!-- Include _menu.html -->
+    <th:block th:include="/_menu"></th:block>
+
+ <div class="container">
+    <h2>Teachers</h2>
+
+    <table  class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Surname</th>
+            <th>Name</th>
+            <th>Father name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Discipline</th>
+            <th>Operations</th>
+            <!--<th>Discipline name</th>
+            <th>Discipline hours per semester</th>-->
+        </tr>
+        <tr th:each="teacherInfo : ${teachers}">
+            <td th:utext="${teacherInfo.id}">..</td>
+            <td th:utext="${teacherInfo.surname}">..</td>
+            <td th:utext="${teacherInfo.name}">..</td>
+            <td th:utext="${teacherInfo.fatherName}">..</td>
+            <td th:utext="${teacherInfo.email}">..</td>
+            <td th:utext="${teacherInfo.phone}">..</td>
+            <td th:utext="${teacherInfo.disciplineName}">..</td>
+            <td>
+                <form method="get" th:action="@{/teacher/{id}(id=${teacherInfo.id})}">
+                    <input type="submit" class="btn btn-outline-info btn-sm" value="Show info">
+                </form>
+                <form method="get" th:action="@{/teacher/{id}/edit(id=${teacherInfo.id})}">
+                    <input type="submit" class="btn btn-outline-primary btn-sm" value="Update">
+                </form>
+                <form method="post" th:action="@{/teacher/{id}(id=${teacherInfo.id})}">
+                    <input type="submit" class="btn btn-outline-danger btn-sm" value="Delete">
+                </form>
+            </td>
+        </tr>
+ 
+    </table>
+     <input type="button" value="Add new teacher" class="btn btn-success"
+            onclick="window.location.href='/teacher/new'"/>
+    </div>
+</body>
+</html>

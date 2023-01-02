@@ -34,6 +34,7 @@ public class MySQLScheduleDAO implements ScheduleIDAO{
             connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
             PreparedStatement statement = connection.prepareStatement(SQL_GET_ALL_SCHEDULES);
 
+
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 Schedule schedule = new Schedule();
