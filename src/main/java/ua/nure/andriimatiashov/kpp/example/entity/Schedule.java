@@ -1,12 +1,9 @@
 package ua.nure.andriimatiashov.kpp.example.entity;
 
-import jakarta.validation.constraints.NotBlank;
-
 public class Schedule {
     private long id;
     private String startTime;
     private String endTime;
-    @NotBlank
     private String cabinetNumber;
     private long disciplineId;
     private String disciplineName;

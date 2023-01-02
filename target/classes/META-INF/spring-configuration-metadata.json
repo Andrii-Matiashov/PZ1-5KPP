@@ -1,0 +1,32 @@
+{
+  "groups": [
+    {
+      "name": "database",
+      "type": "ua.nure.andriimatiashov.kpp.example.dao.DAOConfig",
+      "sourceType": "ua.nure.andriimatiashov.kpp.example.dao.DAOConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "database.password",
+      "type": "java.lang.String",
+      "sourceType": "ua.nure.andriimatiashov.kpp.example.dao.DAOConfig"
+    },
+    {
+      "name": "database.type-d-a-o",
+      "type": "java.lang.String",
+      "sourceType": "ua.nure.andriimatiashov.kpp.example.dao.DAOConfig"
+    },
+    {
+      "name": "database.url",
+      "type": "java.lang.String",
+      "sourceType": "ua.nure.andriimatiashov.kpp.example.dao.DAOConfig"
+    },
+    {
+      "name": "database.user",
+      "type": "java.lang.String",
+      "sourceType": "ua.nure.andriimatiashov.kpp.example.dao.DAOConfig"
+    }
+  ],
+  "hints": []
+}
