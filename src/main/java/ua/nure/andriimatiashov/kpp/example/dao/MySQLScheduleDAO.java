@@ -21,6 +21,11 @@ public class MySQLScheduleDAO implements ScheduleIDAO{
     private final String SQL_DELETE_SCHEDULE_BY_ID= "DELETE FROM schedule WHERE id = ?";
 
     public MySQLScheduleDAO(DAOConfig config){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        } catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         url = config.getUrl();
         user = config.getUser();
         password = config.getPassword();

@@ -125,6 +125,11 @@ public class MySQLDisciplineDAO implements DisciplineIDAO {
     }
 
     public MySQLDisciplineDAO(DAOConfig config) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        } catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         url = config.getUrl();
         user = config.getUser();
         password = config.getPassword();

@@ -20,6 +20,11 @@ public class MySQLTeacherDAO implements TeacherIDAO{
     private final String SQL_DELETE_TEACHER_BY_ID = "DELETE FROM teacher WHERE id = ?";
 
     public MySQLTeacherDAO(DAOConfig config) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+        } catch (InstantiationException | ClassNotFoundException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         url = config.getUrl();
         user = config.getUser();
         password = config.getPassword();
